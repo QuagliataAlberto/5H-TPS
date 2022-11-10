@@ -59,7 +59,7 @@ public class TcpServer {
 				outStream.flush();
 				System.out.println("Server: invio messaggio "    + clientMsg );
 			
-				if(cons%voc==0)
+				if(cons==voc)
 				{
 					System.out.println("Spegnimento del server in corso... ");
 					clientMsg="quit";
