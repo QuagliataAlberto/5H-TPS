@@ -1,7 +1,3 @@
-/**
- * from network/..
- * javac network/Client.java; c
- */
 package network;
 
 import java.io.DataInputStream;
