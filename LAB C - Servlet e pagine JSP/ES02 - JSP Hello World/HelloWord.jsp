@@ -1,6 +1,6 @@
 <%@ page language="java" %>
 	
-	<html>
+<html>
 	
 	<head>
 	  <title>Tavola pitagorica</title>
