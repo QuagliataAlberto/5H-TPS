@@ -1,0 +1,94 @@
+
+public class Gelateria {
+
+		//Attributi 
+			boolean isAperta;
+			int maxPersone;
+			int maxGelato;
+			double prezzoGelato;
+			int[] gelati= new int[4]; //considerare un vettore di 4 interi perchè i gusti sono 4 (ad ogni gusto corrisponde un contenitore)
+			String[] gusti= {"Vaniglia","Cioccolato" ,"Fragola","Limone"}; //aggiunta perchè un gelato viene venduto in base al gusto scelto.
+			
+			
+		//metodi
+			Gelateria(double prezzoGelato, int maxPersone, int maxGelato) { //va a definire quali sono gli attributi che caratterizzano una gelateria, in particolare gli attributi che sono personalizzabili nella creazione dell'oggetto sono quelli passati come parametri del metodo costruttore.
+				this.prezzoGelato= prezzoGelato;
+				this.maxPersone= maxPersone;
+				this.maxGelato= maxGelato;
+				isAperta= true;
+				//di default il vettore gelati è inizializzato come vettore nullo
+			}
+			
+			boolean vediSeAperta() {
+				return isAperta;
+			}
+			
+			void apriGelateria() {
+				isAperta= true;
+			}
+			
+			void chiudiGelateria() {
+				isAperta= false;
+			}
+			
+			void livelloGelato() {
+				System.out.println("la quantità di palline di gelato disponibile per Vaniglia e': "+gelati[0]);
+				System.out.println("la quantità di palline di gelato disponibile per Cioccolato e': "+gelati[1]);
+				System.out.println("la quantità di palline di gelato disponibile per Fragola e': "+gelati[2]);
+				System.out.println("la quantità di palline di gelato disponibile per Limone e': "+gelati[3]);
+			}
+			
+			void rifornGelato() {
+				for(int i=0 ; i<4 ; i++) {
+					gelati[i]= maxGelato;  //ogni gusto, cioè 4 contenitori, viene riempito
+				}
+				
+			}
+			
+			void vendiGelato(String gustoScelto, int numPalline, double contantiClient) {
+				int i=-1;
+				if(gustoScelto.equals("Vaniglia")) //devo usare .equals perchè gustoScelto è il puntatore alla stringa e non la stringa stessa.
+					i=0;
+				if(gustoScelto.equals("Cioccolato"))
+					i=1;
+				if(gustoScelto.equals("Fragola"))
+					i=2;
+				if(gustoScelto.equals("Limone"))
+					i=3;
+				
+				if(i==0 || i==1 || i==2 || i==3) {
+					gelati[i]=gelati[i]-numPalline;
+					
+					double resto;
+					resto=contantiClient-prezzoGelato*numPalline;
+					System.out.println("il resto e' di: " + resto);
+				}
+				else
+					System.out.println("il gusto scelto non esiste");
+					
+			}
+			
+			void aggPrezzoGelato(double newprezzo) {
+				prezzoGelato= newprezzo;
+			}
+			
+			void finitoGelato() {
+				for(int i=0 ; i<4; i++) {
+					if(gelati[i]==0) {
+						System.out.print("il contenitore "+(i+1));
+						System.out.println(" è vuoto");
+					}
+				}
+				
+			}
+			
+			void stampaMaxPersone() {
+				System.out.println("il numero massimo di persone nella gelateria può essere: "+maxPersone);
+			}
+			
+			
+			
+			
+		}
+
+
