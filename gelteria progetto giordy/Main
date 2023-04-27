@@ -1,0 +1,159 @@
+import java.util.Scanner;
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner s= new Scanner(System.in);
+		
+		//creazione oggetto
+		Gelateria[] g= new Gelateria [3]; //mi crea un vettore di 3 oggetti, appartenenti alla classe gelateria e mi viene restituito il puntatore a questo vettore (che punta al primo elemento del vettore). Ogni elemento di questo vettore è in realtà un puntatore a NULL.
+		
+		System.out.println("**Creazione delle 3 gelaterie**\n");
+		for(int i=0 ; i<3 ; i++) { //ciclo per chiedere i parametri per tutte e 3 le gelaterie, hanno parametri diversi.
+			
+			System.out.println("Creazione gelateria "+(i+1));
+			System.out.println("");
+			
+			System.out.println("Inserisci il prezzo per ogni pallina di gelato: ");
+			double prezz= s.nextDouble();
+			
+			System.out.println("Inserisci il massimo numero di persone per ogni gelateria: ");
+			int maxp= s.nextInt();
+			
+			System.out.println("Inserisci il quantitativo massimo di palline per ogni contenitore: ");
+			int maxg= s.nextInt();
+			
+			g[i]= new Gelateria(prezz, maxp, maxg); //va a definire le 3 gelaterie.
+		}
+		
+		int cont, cont2;
+		do {
+			menu();
+			cont= s.nextInt();
+			cont-= 1;  //oer la gelateria 1 premo 1 ma il programma deve capire che mi riferisco all'elelmento del vettore di indice 0 quindi scalo di 1
+			
+			if(g[cont].vediSeAperta()==true) {
+				do {
+					sotto_menu();
+					
+					cont2= s.nextInt();
+					switch(cont2) {
+					case 1: {
+						g[cont].apriGelateria();
+						break;
+					}
+						
+					case 2: {
+						g[cont].chiudiGelateria();
+						cont2=0;
+						break;
+					}
+						
+					case 3: {
+						g[cont].livelloGelato();
+						break;
+					}
+						
+					case 4: {
+						g[cont].rifornGelato();
+						break;
+					}
+						
+					case 5: {
+						System.out.println("Scegli il gusto del gelato: ");
+						String gusto= s.next();
+						
+						System.out.println("Scegli il numero di palline: ");
+						int palline= s.nextInt();
+						
+						System.out.println("Dammi i contanti: ");
+						double contanti= s.nextDouble();
+						
+						g[cont].vendiGelato(gusto, palline, contanti);
+						break;
+					}
+						
+					case 6: {
+						System.out.println("Inserisci il nuovo prezzo: ");
+						double nuovoprezzo= s.nextDouble();
+						g[cont].aggPrezzoGelato(nuovoprezzo);
+						break;
+					}
+					
+					case 7: {
+						g[cont].finitoGelato();
+						break;
+					}
+					
+					case 8: {
+						g[cont].stampaMaxPersone();
+						break;
+					}
+						
+					case 9: {
+						cont2=0;  //ritorna al menu principale
+						break;
+					}
+						
+					case 0: {   //mi esce da tutti i menu
+						cont2= 0;
+						cont= -1;
+						break;
+					}
+					default: {
+						System.out.println("comando non disponibile, scegliere tra quelli elencati!");
+					}
+					
+					
+					}
+
+				}while(cont2!=0);
+				
+				
+			}
+			
+			
+			else{  //se la gelateria selezionata è chiusa
+				
+				
+				System.out.println("La gelateria è chiusa! FUORI DALLE BALLE!");
+				
+				
+			}
+			
+			
+			
+			
+		}while(cont!=-1);
+		
+		
+		
+		
+	
+	}
+
+	//menu 
+	public static void menu() {
+		
+		System.out.println("Premi 1 per andare alla gelateria n.1");
+		System.out.println("Premi 2 per andare alla gelateria n.2");
+		System.out.println("Premi 3 per andare alla gelateria n.3");
+		System.out.println("Premi 0 per uscire");
+	}
+	//sotto-menu
+	public static void sotto_menu() {
+		System.out.println("Premi 1 per aprire la gelateria;");
+		System.out.println("Premi 2 per chiudere la gelateria");
+		System.out.println("Premi 3 per far sapere la quantità di gelato disponibile per ciascun gusto");
+		System.out.println("Premi 4 per rifornire i gelati");
+		System.out.println("Premi 5 per vendere un gelato");
+		System.out.println("Premi 6 per aggiornare il prezzo dei gelati");
+		System.out.println("Premi 7 per verificare se bisogna rifornire un contenitore");
+		System.out.println("Premi 8 per stampare il numero massimo di persone che possono entrare");
+		System.out.println("Premi 9 per tornare al menu principale");
+		System.out.println("Premi 0 per uscire");
+	}
+	
+}
+	
+	
